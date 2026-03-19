@@ -23,8 +23,8 @@ PICKY=-std=c99 -Wstrict-prototypes -pedantic -fno-strength-reduce \
 			# on OS2:         spin -Picc -E/Pd+ -E/Q+
 			# for Visual C++: spin -PCL  -E/E
 
-YACC?=yacc		# on Solaris: /usr/ccs/bin/yacc
-YFLAGS=-v -d 		# creates y.output and y.tab.h
+YACC=bison		# on Solaris: /usr/ccs/bin/yacc
+#YFLAGS=-v -d 		# creates y.output and y.tab.h
 DESTDIR?=/usr/local
 INSTALL?=cp		# on linux: install -D
 
@@ -45,9 +45,9 @@ install: spin
 
 spin.o:	makefile spin.y
 	$(YACC) $(YFLAGS) spin.y
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c y?tab.c
-	rm -f y?tab.c
-	mv y?tab.o spin.o
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c spin.tab.c
+	rm -f spin.tab.c
+	mv spin.tab.o spin.o
 
 $(SPIN_OS): makefile spin.h spin.o
 
