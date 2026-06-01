@@ -6,13 +6,6 @@
 
 CC?=gcc
 CFLAGS?=-O2 -DNXT -Wall -pedantic
-	# on some systems add: -I/usr/include
-	# on a PC:    make CFLAGS="-O2 -DNXT -DPC"
-	# on Solaris: make CFLAGS="-O2 -DNXT -DSOLARIS"
-	# on a Mac:   make CFLAGS="-O2 -DNXT -DMAC"
-	# on HP-UX:   make CFLAGS="-O2 -DNXT -Aa"
-	# debugging:  make CFLAGS="-pg -g -DNXT"
-	# or:         make CC=clang CFLAGS="-fsanitize=address -g"
 
 # for a more picky compilation use gcc-4 and add:
 PICKY=-std=c99 -Wstrict-prototypes -pedantic -fno-strength-reduce \
@@ -20,11 +13,9 @@ PICKY=-std=c99 -Wstrict-prototypes -pedantic -fno-strength-reduce \
 	-Wcast-qual -Winline -Wall
 
 # when running spin with a different compiler:
-			# on OS2:         spin -Picc -E/Pd+ -E/Q+
-			# for Visual C++: spin -PCL  -E/E
 
 YACC=bison		# on Solaris: /usr/ccs/bin/yacc
-#YFLAGS=-v -d 		# creates y.output and y.tab.h
+YFLAGS=-v -d 		# creates y.output and y.tab.h
 DESTDIR?=/usr/local
 INSTALL?=cp		# on linux: install -D
 
